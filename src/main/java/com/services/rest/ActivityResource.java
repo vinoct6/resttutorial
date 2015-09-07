@@ -20,13 +20,23 @@ public class ActivityResource {
 
 		private ActivityResourceStub stub = new ActivityResourceStub();
 		
+		
 		@POST
 		@Path("activity")
 		@Consumes(MediaType.APPLICATION_XML)
-		//@Produces(MediaType.TEXT_PLAIN)
+		@Produces({MediaType.APPLICATION_XML,MediaType.APPLICATION_JSON})
+		public Activity createNewActivity(Activity activity){
+			System.out.println(activity);
+			return activity;
+		}
+		
+		
+		@POST
+		@Path("activity")
+		@Consumes(MediaType.APPLICATION_XML)
+		@Produces(MediaType.TEXT_PLAIN)
 		public void createNewActivity(MultivaluedHashMap<String, String> params){
 			System.out.println(params);
-			//return "vinoth";
 		}
 		
 		

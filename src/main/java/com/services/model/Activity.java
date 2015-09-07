@@ -79,4 +79,12 @@ public class Activity {
 		this.id = id;
 	}
 
+	@Override
+	public String toString() {
+		return "Activity [description=" + description + ", duration="
+				+ duration + ", id=" + id + ", user=" + user + "]";
+	}
+	
+	
+
 }
