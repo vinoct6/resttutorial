@@ -10,6 +10,8 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedHashMap;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
 
 import com.services.model.Activity;
 import com.services.model.User;
@@ -20,6 +22,23 @@ public class ActivityResource {
 
 		private ActivityResourceStub stub = new ActivityResourceStub();
 		
+		
+		
+		@GET
+		@Produces({MediaType.APPLICATION_XML,MediaType.APPLICATION_JSON})
+		@Path("{activityId}") //http://localhost:8080/resttutorial/v1/activities/222
+		public Response getActivityDetail(@PathParam("activityId") String activityId){
+			if(activityId == null){
+				return Response.status(Status.BAD_REQUEST).build();
+			}
+			
+			Activity activity  = stub.findActivityById(activityId);
+			if (activity == null){
+				return Response.status(Status.NOT_FOUND).build();
+			}
+			
+			return Response.ok().entity(activity).build();
+		}
 		
 		@POST
 		@Path("activity")
