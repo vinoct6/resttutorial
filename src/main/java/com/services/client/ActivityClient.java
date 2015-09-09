@@ -5,6 +5,7 @@ import java.util.List;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
 
 import com.services.model.Activity;
@@ -30,7 +31,7 @@ public class ActivityClient {
 	
 	public List<Activity> get(){
 		WebTarget target  = client.target("http://localhost:8080/resttutorial/v1/");
-		List<Activity> response = target.path("activities").request().get(List.class);
+		List<Activity> response = target.path("activities").request().get(new GenericType<List<Activity>>(){});
 		return response;
 	}
 	
