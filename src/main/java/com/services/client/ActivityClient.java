@@ -2,11 +2,14 @@ package com.services.client;
 
 import java.util.List;
 
+import javax.print.attribute.standard.Media;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 import com.services.model.Activity;
 
@@ -33,6 +36,13 @@ public class ActivityClient {
 		WebTarget target  = client.target("http://localhost:8080/resttutorial/v1/");
 		List<Activity> response = target.path("activities").request().get(new GenericType<List<Activity>>(){});
 		return response;
+	}
+	
+	
+	public Activity create(Activity activity){
+		WebTarget target  = client.target("http://localhost:8080/resttutorial/v1/");
+		Response response = target.path("activities/activity").request().post(Entity.entity(activity, MediaType.APPLICATION_JSON));
+		return response.readEntity(Activity.class);
 	}
 	
 	

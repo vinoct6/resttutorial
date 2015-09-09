@@ -40,6 +40,9 @@ public class ActivityResource {
 			return Response.ok().entity(activity).build();
 		}
 		
+		
+		
+		
 		@POST
 		@Path("activity")
 		@Consumes(MediaType.APPLICATION_XML)
