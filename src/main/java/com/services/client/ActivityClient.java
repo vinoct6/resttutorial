@@ -45,10 +45,19 @@ public class ActivityClient {
 		return response.readEntity(Activity.class);
 	}
 	
+	public Activity update(Activity activity){
+		WebTarget target  = client.target("http://localhost:8080/resttutorial/v1/");
+		Response response = target.path("activities/" + activity.getId()).request().put(Entity.entity(activity, MediaType.APPLICATION_JSON));
+		return response.readEntity(Activity.class);
+	}
+	
 	
 	
 	public static void main(String[] args){
 		Activity a  = new ActivityClient().get(null);
 	}
+	
+	
+	
 
 }
